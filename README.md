@@ -271,3 +271,7 @@ YourVault/.obsidian/themes/Claude Minimal/
 ```
 
 建议更新后重启 Obsidian。
+
+## 🙏 致谢
+
+感谢 [linuxdo](https://linux.do/) 社区的交流、分享与反馈，让 TripStar 的迭代更高效。
