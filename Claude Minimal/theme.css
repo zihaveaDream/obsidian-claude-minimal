@@ -713,12 +713,113 @@ select:focus,
 .prompt,
 .suggestion-container,
 .menu,
-.popover,
+.popover:not(.hover-popover):not(.hover-editor),
 .tooltip {
   background-color: var(--modal-background);
   border: 1px solid var(--background-modifier-border);
   border-radius: var(--claude-radius-md);
   box-shadow: var(--claude-panel-shadow);
+}
+
+.popover.hover-popover,
+.popover.hover-editor {
+  background-color: var(--background-primary) !important;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--claude-radius-md);
+  box-shadow: var(--claude-panel-shadow);
+  color: var(--text-normal);
+  overflow: visible !important;
+}
+
+.popover.hover-popover .popover-content,
+.popover.hover-editor .popover-content {
+  background-color: var(--background-primary) !important;
+  border-color: var(--background-modifier-border) !important;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.popover.hover-popover .workspace-leaf-content,
+.popover.hover-editor .workspace-leaf-content,
+.popover.hover-popover .view-content,
+.popover.hover-editor .view-content,
+.popover.hover-popover .markdown-preview-view,
+.popover.hover-editor .markdown-preview-view,
+.popover.hover-popover .markdown-source-view,
+.popover.hover-editor .markdown-source-view,
+.popover.hover-popover .markdown-embed,
+.popover.hover-editor .markdown-embed,
+.popover.hover-popover .markdown-embed-content,
+.popover.hover-editor .markdown-embed-content {
+  background-color: var(--background-primary) !important;
+  color: var(--text-normal) !important;
+}
+
+.popover.hover-popover .markdown-preview-sizer,
+.popover.hover-editor .markdown-preview-sizer {
+  background-color: transparent !important;
+  min-height: 0 !important;
+}
+
+.popover.hover-popover .popover-titlebar,
+.popover.hover-editor .popover-titlebar {
+  background-color: var(--background-secondary) !important;
+  border-bottom: 1px solid var(--background-modifier-border);
+  color: var(--text-muted);
+}
+
+.tooltip,
+.tooltip .tooltip-content,
+.tooltip .tooltip-inner {
+  background-color: var(--background-primary) !important;
+  color: var(--text-normal) !important;
+  border-color: var(--background-modifier-border) !important;
+  text-shadow: none !important;
+}
+
+.tooltip {
+  border: 1px solid var(--background-modifier-border) !important;
+  border-radius: var(--claude-radius-md) !important;
+  box-shadow: var(--claude-panel-shadow) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+.tooltip .tooltip-arrow {
+  display: none !important;
+}
+
+.tooltip * {
+  color: var(--text-normal) !important;
+}
+
+.tooltip.mod-error,
+.tooltip.mod-error * {
+  color: var(--text-error) !important;
+}
+
+.tooltip.mod-top::before,
+.tooltip.mod-top::after,
+.tooltip.mod-top .tooltip-arrow {
+  border-top-color: var(--background-primary) !important;
+}
+
+.tooltip.mod-bottom::before,
+.tooltip.mod-bottom::after,
+.tooltip.mod-bottom .tooltip-arrow {
+  border-bottom-color: var(--background-primary) !important;
+}
+
+.tooltip.mod-left::before,
+.tooltip.mod-left::after,
+.tooltip.mod-left .tooltip-arrow {
+  border-left-color: var(--background-primary) !important;
+}
+
+.tooltip.mod-right::before,
+.tooltip.mod-right::after,
+.tooltip.mod-right .tooltip-arrow {
+  border-right-color: var(--background-primary) !important;
 }
 
 .suggestion-item.is-selected,
