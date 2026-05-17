@@ -274,4 +274,4 @@ YourVault/.obsidian/themes/Claude Minimal/
 
 ## 🙏 致谢
 
-感谢 [linuxdo](https://linux.do/) 社区的交流、分享与反馈，让 TripStar 的迭代更高效。
+感谢 [linuxdo](https://linux.do/) 社区的交流、分享与反馈，让项目的迭代更高效。
