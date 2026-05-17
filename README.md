@@ -1,5 +1,9 @@
 # Claude for Minimal / Obsidian
 
+## 0. 效果展示
+
+![image-20260517164839819](assets/image-20260517164839819.png)
+
 ## 1. 这是什么？
 
 `Claude for Minimal / Obsidian` 是一个为 Obsidian `Minimal` 主题设计的 Claude 风格外观方案。它的目标不是替换你的 Obsidian 工作流，而是在保留 `Minimal` 和 `Minimal Theme Settings` 使用体验的前提下，为 Obsidian 叠加一套更温润、克制、适合长时间写作和阅读的 Claude 风格界面。
