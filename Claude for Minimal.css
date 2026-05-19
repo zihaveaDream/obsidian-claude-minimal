@@ -12,10 +12,13 @@ body {
   --claude-accent: #d97757;
   --claude-accent-hover: #bf6243;
   --claude-accent-soft: rgba(217, 119, 87, 0.14);
-  --claude-font-text: "Anthropic Serif Web Text", "Noto Serif SC", Georgia, "Times New Roman", serif;
+  --claude-font-text: "Anthropic Serif Web Text", Georgia, "Times New Roman", "Noto Serif SC", serif;
+  --claude-font-heading: var(--claude-font-text);
   --claude-font-interface: var(--claude-font-text);
   --claude-font-mono: "Anthropic Mono Variable", "Noto Serif SC", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --claude-font-code: var(--claude-font-mono);
+  --claude-heading-numeric-variant: oldstyle-nums proportional-nums;
+  --claude-heading-font-features: "onum" 1, "lnum" 0;
   --claude-content-line-height: 1.65;
   --font-interface-theme: var(--claude-font-interface);
   --font-interface: var(--claude-font-interface);
@@ -353,6 +356,30 @@ body ::selection {
   box-shadow: inset 0 0 0 1px var(--background-modifier-border);
 }
 
+.mod-right-split .workspace-tab-header-container,
+.mod-right-split .workspace-tab-header-container-inner {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+}
+
+.mod-right-split .workspace-tab-header-container::-webkit-scrollbar,
+.mod-right-split .workspace-tab-header-container-inner::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.mod-right-split .workspace-tab-header-container {
+  min-height: var(--header-height, 40px);
+  height: var(--header-height, 40px);
+}
+
+.mod-right-split .workspace-tab-header,
+.mod-right-split .workspace-tab-header-inner,
+.mod-right-split .workspace-tab-header-inner-icon {
+  align-items: center;
+}
+
 .view-header {
   border-color: var(--background-modifier-border);
 }
@@ -400,11 +427,44 @@ select,
   font-family: var(--claude-font-text);
 }
 
+.inline-title,
+.view-header-title,
+.workspace-tab-header-inner-title,
+.workspace-tab-header-inner,
+.nav-file-title,
+.nav-folder-title,
+.nav-file-title-content,
+.nav-folder-title-content,
+.tree-item-self,
+.tree-item-inner,
+.outline .tree-item-inner,
+.search-result-file-title,
+.suggestion-title,
+.suggestion-content,
+.markdown-embed-title,
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4,
+.markdown-source-view.mod-cm6 .cm-header-1,
+.markdown-source-view.mod-cm6 .cm-header-2,
+.markdown-source-view.mod-cm6 .cm-header-3,
+.markdown-source-view.mod-cm6 .cm-header-4 {
+  font-family: var(--claude-font-heading) !important;
+  font-synthesis-weight: auto;
+  font-variant-numeric: var(--claude-heading-numeric-variant) !important;
+  font-feature-settings: var(--claude-heading-font-features) !important;
+}
+
 .markdown-preview-view,
 .markdown-source-view.mod-cm6 .cm-content {
   font-weight: 400;
   line-height: var(--claude-content-line-height);
-  font-synthesis-weight: none;
+  font-synthesis-weight: auto;
 }
 
 .markdown-rendered p,
