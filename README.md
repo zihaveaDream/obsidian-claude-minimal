@@ -21,11 +21,14 @@
 - 使用 Claude 主题的浅色/深色配色、强调色、面板色、边框、圆角和阴影。
 - 为 Obsidian 的侧边栏、标签页、按钮、菜单、弹窗、搜索建议、属性区做 Claude 风格适配。
 - 为标题、正文、行内代码、代码块、引用、表格、callout、链接、高亮、下划线等 Markdown 元素做风格统一。
-- 使用 Claude 风格字体链：`Anthropic Serif Web Text`、`Anthropic Sans Web Text`、`Anthropic Mono Variable`、`Noto Serif SC`。
+- 使用 Claude 风格字体链：`Anthropic Serif Web Text`、`Anthropic Mono Variable`、`Noto Serif SC`，并为中文保留稳定的衬线回退。
+- 标题、笔记名和大纲保留 `Anthropic Serif Web Text` 的 oldstyle 数字效果，数字会呈现自然的高低变化。
+- 代码块和行内代码使用 `Anthropic Mono Variable`，同时为中文内容提供 `Noto Serif SC` 回退。
+- 优化笔记属性、引用、列表、表格、悬浮预览、右侧边栏顶部标签栏等 Obsidian 细节。
 - 保留 Obsidian / Minimal 的原有编辑体验，不隐藏粗体、斜体、行内代码、高亮、下划线等 Markdown 标记。
-- 保留 Obsidian 的按钮、侧边栏控制、源码/阅读切换能力和横向滚动条。
+- 保留 Obsidian 的按钮、侧边栏控制、源码/阅读切换能力和正文区域横向滚动条。
 
-本项目不会引入会影响 Obsidian 使用体验的隐藏规则，不隐藏 Markdown 符号、按钮、侧边栏控件和水平滚动条，尽量让视觉变化停留在外观层，而不改变你原来的编辑习惯。
+本项目不会引入会影响 Obsidian 使用体验的隐藏规则，不隐藏 Markdown 符号、按钮、侧边栏控件和正文区域水平滚动条。唯一主动隐藏的是右侧边栏顶部标签栏误触发的细滚动条，因为它会挤压图标位置。
 
 项目内包含两个使用方式：
 
@@ -121,13 +124,13 @@ fc-cache -f -v
 Interface font：
 
 ```text
-Anthropic Serif Web Text, Noto Serif SC, Georgia
+Anthropic Serif Web Text, Georgia, Times New Roman, Noto Serif SC
 ```
 
 Text font：
 
 ```text
-Anthropic Serif Web Text, Noto Serif SC, Georgia
+Anthropic Serif Web Text, Georgia, Times New Roman, Noto Serif SC
 ```
 
 Monospace font：
@@ -136,9 +139,16 @@ Monospace font：
 Anthropic Mono Variable, Noto Serif SC, JetBrains Mono, Source Code Pro, monospace
 ```
 
-顺序很重要。不要把 `system-ui` 放在 `Noto Serif SC` 前面，否则中文会优先落到系统黑体，视觉会和正文的衬线风格不一致。
+顺序很重要。正文和界面字体建议都使用同一条衬线链，让 Obsidian 的界面、笔记正文、标题和文件列表保持一致。不要把 `system-ui` 放在 `Noto Serif SC` 前面，否则中文会优先落到系统黑体，视觉会和正文的衬线风格不一致。
 
-本项目的 CSS snippet 也会对编辑区和阅读区追加字体约束，避免 Minimal 或 Obsidian 的变量链让中文字体回退到系统默认字体。
+本项目的 CSS snippet 会继续对编辑区、阅读区、标题、笔记名、大纲、文件列表和代码区域追加字体约束，避免 Minimal 或 Obsidian 的变量链让中文字体回退到系统默认字体。
+
+关于数字样式：
+
+- 标题、笔记名和大纲使用 `oldstyle-nums`。
+- 这意味着 `1`、`2`、`6` 和 `3`、`4`、`5` 的视觉高度可能不同。
+- 这是字体本身的设计效果，不是错位 bug。
+- 如果你更喜欢所有数字齐线，可以在 CSS 中把 `--claude-heading-numeric-variant` 改为 `lining-nums proportional-nums`，并把 `--claude-heading-font-features` 改为 `"lnum" 1, "onum" 0`。
 
 ### 2.5 安装推荐方案：CSS snippet
 
@@ -223,16 +233,22 @@ YourVault/.obsidian/themes/
 
 - 英文标题和正文接近 Claude Serif 的观感。
 - 中文正文使用 `Noto Serif SC`，而不是系统黑体。
+- 标题、笔记名、大纲里的数字保留 oldstyle 高低变化。
 - UI 控件有 Claude 风格的暖白背景、柔和边框和橙色强调色。
 - 行内代码和代码块使用 Anthropic Mono 风格。
-- Markdown 源码标记、侧边栏控件和横向滚动条仍然可用。
+- 引用竖条更接近粗实的阅读样式，列表在引用内不会被推得过远。
+- 悬浮预览不会出现白底白字或左侧边框被截断的问题。
+- 右侧边栏顶部不会出现挤压图标的细滚动条。
+- Markdown 源码标记、侧边栏控件和正文区域横向滚动条仍然可用。
 
 如果中文字体没有变化，优先检查：
 
 1. `Noto Serif SC` 是否真的安装成功。
 2. Obsidian 是否已经完全重启。
-3. 字体顺序里 `Noto Serif SC` 是否排在 `system-ui` 前面。
+3. 字体顺序里是否没有把 `system-ui` 放在 `Noto Serif SC` 前面。
 4. `Claude for Minimal` snippet 是否启用。
+
+如果标题里的数字看起来有高低变化，这是当前主题的预期效果。它来自 `Anthropic Serif Web Text` 的 oldstyle 数字特性。
 
 如果你希望界面更接近 Claude 官网的无衬线 UI，可以只把 Interface font 改成：
 
